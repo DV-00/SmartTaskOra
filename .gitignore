@@ -1,0 +1,11 @@
+# Ignore node_modules for frontend
+Frontend/node_modules/
+
+# Ignore node_modules for backend (if applicable)
+Backend/node_modules/
+
+# Ignore common build/log files
+.env
+build/
+dist/
+*.log
