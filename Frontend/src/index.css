@@ -1,0 +1,694 @@
+/* Global Box Sizing for consistent layout */
+*, ::before, ::after {
+  box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif; /* Consistent font */
+  background: linear-gradient(to right, #c2e0d8, #d1e3f0); /* Light mode background */
+  min-height: 100vh;
+  background-attachment: fixed;
+  background-size: cover;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out; /* Smooth transition for dark mode */
+}
+
+/* Dark Mode Body */
+body.dark {
+  background: linear-gradient(135deg, #000000ce, #041b1fef); /* Dark mode background */
+  color: #e6e4e4fa;
+}
+
+/* --- Glassmorphic Card Base Style (Consolidated) --- */
+.glass-card {
+  background: rgba(255, 255, 255, 0.25); /* Transparent white */
+  border-radius: 16px; /* Slightly more rounded */
+  padding: 2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(12px); /* Stronger blur for prominent glass effect */
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Dark Mode Glassmorphic Card */
+body.dark .glass-card {
+  background: rgba(0, 0, 0, 0.3); /* Darker transparent background */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 24px rgba(56, 56, 56, 0.3);
+}
+
+/* --- Specific Glass Card Color Variants (for Summary Cards) --- */
+.glass-primary {
+  background: rgba(0, 123, 255, 0.2); /* Slightly more opaque for better visibility */
+  border-color: rgba(0, 123, 255, 0.4);
+  color: #032d49; /* Dark blue text for contrast */
+  padding: 5%;
+}
+body.dark .glass-primary {
+  background: rgba(0, 123, 255, 0.1);
+  border-color: rgba(0, 123, 255, 0.2);
+  color: #add8e6; /* Lighter blue text for dark mode */
+  padding: 5%;
+}
+
+.glass-success {
+  background: rgba(40, 167, 69, 0.2);
+  border-color: rgba(40, 167, 69, 0.4);
+  color: #155724; /* Dark green text */
+  padding: 5%;
+}
+body.dark .glass-success {
+  background: rgba(40, 167, 69, 0.1);
+  border-color: rgba(40, 167, 69, 0.2);
+  color: #90ee90; /* Lighter green text */
+  padding: 5%;
+}
+
+.glass-warning {
+  background: rgba(255, 193, 7, 0.2);
+  border-color: rgba(255, 193, 7, 0.4);
+  color: #856404; /* Dark yellow text */
+  padding: 5%;
+}
+body.dark .glass-warning {
+  background: rgba(255, 193, 7, 0.1);
+  border-color: rgba(255, 193, 7, 0.2);
+  color: #ffeb3b; /* Lighter yellow text */
+  padding: 5%;
+}
+
+.glass-danger {
+  background: rgba(220, 53, 69, 0.2);
+  border-color: rgba(220, 53, 69, 0.4);
+  color: #721c24; /* Dark red text */
+  padding: 5%;
+}
+body.dark .glass-danger {
+  background: rgba(220, 53, 69, 0.1);
+  border-color: rgba(220, 53, 69, 0.2);
+  color: #ff6347; /* Lighter red text */
+  padding: 5%;
+}
+
+/* --- Button Styling (Consolidated & Improved) --- */
+.btn {
+  background-color: #032d49; /* Primary blue */
+  border: none;
+  color: white;
+  transition: all 0.2s ease-in-out;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn:hover {
+  background-color: #043f60; /* Slightly darker on hover */
+  transform: translateY(-2px); /* Subtle lift */
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4); /* Enhanced shadow */
+}
+
+/* Specific button variants */
+.btn-primary { 
+  background-color: #032d49;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #043f60;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+}
+
+.btn-success {
+  background-color: #28a745;
+}
+.btn-success:hover {
+  background-color: #218838;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  color: #333; /* Darker text for warning */
+}
+.btn-warning:hover {
+  background-color: #e0a800;
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
+}
+
+.btn-danger {
+  background-color: #dc3545;
+}
+.btn-danger:hover {
+  background-color: #c82333;
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+}
+
+.btn-outline-danger {
+  background-color: transparent;
+  border: 1px solid #dc3545;
+  color: #dc3545;
+}
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: white;
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+}
+
+
+/* --- Header Styling --- */
+.glass-header {
+  width: 100%;
+  background: rgba(1, 30, 31, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid rgba(228, 224, 224, 0.3);
+  color: #003366; /* Dark blue text */
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 1rem 2rem; /* Add padding for better spacing */
+}
+
+/* Dark mode for header */
+body.dark .glass-header {
+  background: rgba(0, 0, 0, 0.815);
+  color: #f0f0f0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 24px rgba(56, 56, 56, 0.3);
+}
+
+/* --- Feature Card (if used elsewhere) --- */
+.feature-card {
+  background: rgba(255, 255, 255, 0.336);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(126, 240, 248, 0.24);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  min-height: 170px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.feature-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Task List Table (.ts) Styling --- */
+.ts {
+  width: 100%;
+  border-collapse: separate; /* Crucial for border-radius and spacing on TR */
+  border-spacing: 0 10px; /* Vertical space between rows */
+  font-family: 'Inter', sans-serif;
+  /* Removed box-shadow, border-radius, overflow here as it's on individual rows */
+}
+
+.ts thead th {
+  background-color: #032d49; /* Dark blue header */
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for individual task rows (tr) */
+.ts tbody tr {
+  border-radius: 12px; /* More rounded corners */
+  overflow: hidden;
+  cursor: pointer;
+  min-height: 70px; /* Adjusted min-height for better visual spacing */
+  display: table-row; /* Ensures min-height works */
+
+  transition: all 0.3s ease-in-out; /* Smooth transitions */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08); /* Initial subtle shadow */
+  backdrop-filter: blur(10px); /* Glass effect */
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Smooth Hover Effect for task rows */
+.ts tbody tr:hover {
+  transform: translateY(-4px); /* Lifts the row slightly more on hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* More prominent shadow on hover */
+  /* IMPORTANT: Background color is handled by inline style (rgba) based on status */
+}
+
+/* Styling for the cells (td) within the rows */
+.ts tbody td {
+  padding: 1rem 1.5rem; /* Adjusted padding for better height and horizontal spacing */
+  vertical-align: middle; /* Vertically centers content */
+  border: none; /* Remove default table cell borders */
+}
+
+/* Styling for the expanded task details row */
+.ts tbody tr.table-active {
+  background-color: rgba(240, 240, 240, 0.95); /* Slightly darker for expanded row */
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0; /* No border-radius for expanded row */
+  box-shadow: none;
+  transform: none;
+  backdrop-filter: none; /* Remove blur for expanded row */
+}
+
+/* Dark mode for table rows */
+body.dark .ts tbody tr {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 3px 8px rgba(56, 56, 56, 0.2);
+}
+
+body.dark .ts tbody tr.table-active {
+  background-color: rgba(50, 50, 50, 0.95);
+  color: #e6e4e4fa;
+}
+
+/* --- Upcoming Deadlines Section --- */
+.upcoming-deadlines-container {
+  background: rgba(255, 255, 255, 0.25); /* Glass effect */
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 2rem; /* Space below */
+}
+
+body.dark .upcoming-deadlines-container {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #e6e4e4fa;
+}
+
+.upcoming-deadlines-item {
+  background: rgba(255, 255, 255, 0.6); /* Slightly more opaque for readability */
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: #333; /* Dark text for readability */
+}
+
+body.dark .upcoming-deadlines-item {
+  background: rgba(50, 50, 50, 0.6);
+  color: #f0f0f0;
+}
+
+.upcoming-deadlines-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Modal Styling (for TaskEditForm) --- */
+.modal-backdrop.fade.show {
+  opacity: 0.5; /* Standard backdrop opacity */
+  background-color: #000; /* Dark background */
+  transition: opacity 0.3s ease-in-out;
+}
+
+.modal.d-block.fade.show {
+  display: flex !important; /* Ensure it's a flex container */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  background-color: transparent; /* Let backdrop handle background */
+}
+
+.modal-dialog {
+  max-width: 500px;
+  margin: 1.75rem auto;
+  position: relative; /* For z-index */
+  z-index: 1050; /* Above backdrop */
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.9); /* Opaque white for content */
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(15px); /* Glass effect for modal */
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease-in-out;
+}
+
+body.dark .modal-content {
+  background: rgba(30, 30, 30, 0.9);
+  color: #f0f0f0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.modal-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.8); /* Slightly transparent header */
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+body.dark .modal-header {
+  background: rgba(40, 40, 40, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.8); /* Slightly transparent footer */
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+body.dark .modal-footer {
+  background: rgba(40, 40, 40, 0.8);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Form control styling within modals/forms */
+.form-control, .form-select {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease-in-out;
+
+}
+
+body.dark .form-control, body.dark .form-select {
+  background: rgba(50, 50, 50, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f0f0f0;
+}
+
+.form-control:focus, .form-select:focus {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+body.dark .form-control:focus, body.dark .form-select:focus {
+  background: rgba(60, 60, 60, 0.9);
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+
+/* Alerts */
+.alert {
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.alert-warning {
+  background-color: rgba(255, 243, 205, 0.8);
+  border-color: rgba(255, 238, 186, 0.8);
+  color: #856404;
+}
+.alert-danger {
+  background-color: rgba(248, 215, 218, 0.8);
+  border-color: rgba(245, 198, 203, 0.8);
+  color: #721c24;
+}
+
+body.dark .alert-warning {
+  background-color: rgba(100, 80, 0, 0.6);
+  border-color: rgba(120, 100, 0, 0.6);
+  color: #ffeb3b;
+}
+body.dark .alert-danger {
+  background-color: rgba(80, 0, 0, 0.6);
+  border-color: rgba(100, 0, 0, 0.6);
+  color: #ff6347;
+}
+
+/* --- NEW: Badge Section Styling --- */
+.gamification-badge-section {
+  background-color: rgba(248, 249, 250, 0.6); /* Light background for glass effect */
+  border: 1px solid rgba(233, 236, 239, 0.5);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(5px); /* Add blur for glass effect */
+  padding: 20px; /* Adjusted padding */
+  border-radius: 16px; /* Ensure main section also has rounded corners */
+}
+
+.gamification-badge-section h2 {
+  color: #343a40;
+  margin-bottom: 25px;
+  font-size: 2em;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+body.dark .gamification-badge-section h2 {
+  color: #f0f0f0; /* Light text for dark mode */
+}
+
+body.dark .gamification-badge-section {
+  background-color: rgba(25, 25, 25, 0.7); /* Darker transparent black */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(56, 56, 56, 0.3);
+  color: #e6e4e4fa; /* Keep this light text color */
+}
+
+.gamification-badge-section h2 .svg-inline--fa {
+  font-size: 1.5em;
+  color: #ffc107;
+}
+
+.badge-display {
+  padding: 25px 20px;
+  border-radius: 15px;
+  color: white;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(8px); /* Ensure badge itself has blur */
+}
+
+.badge-display:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.badge-display h3 {
+  margin: 10px 0 8px 0;
+  font-size: 2.2em;
+  font-weight: 700;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.badge-display p {
+  font-size: 1.1em;
+  opacity: 0.9;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* Badge Colors - Use linear gradients for a more premium look */
+.badge-bronze { background: linear-gradient(to right, #cd7f32, #a86c2e); }
+.badge-silver { background: linear-gradient(to right, #c0c0c0, #9e9e9e); }
+.badge-gold { background: linear-gradient(to right, #ffd700, #daa520); }
+.badge-platinum {
+  background: linear-gradient(to right, #e5e4e2, #b5b5b5);
+  color: #333; /* Darker text for platinum */
+}
+
+.no-badge-message {
+  color: #6c757d;
+  font-style: italic;
+  font-size: 1em;
+  padding: 15px;
+  background-color: rgba(240, 242, 245, 0.7);
+  border-radius: 10px;
+  margin: 0 auto;
+  max-width: 400px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(5px);
+}
+
+.no-badge-message strong {
+  color: #007bff;
+  font-weight: 600;
+}
+
+/* --- NEW: Pie Chart Section Styling --- */
+.pie-chart-container {
+  background-color: rgba(248, 249, 250, 0.6);
+  border: 1px solid rgba(233, 236, 239, 0.5);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(5px);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  border-radius: 16px; /* Added border-radius */
+}
+
+body.dark .pie-chart-container {
+  background-color: rgba(25, 25, 25, 0.7); /* Darker transparent black */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(56, 56, 56, 0.3);
+  color: #e6e4e4fa; /* Keep this light text color */
+}
+
+.pie-chart-container h2 {
+  color: #343a40;
+  margin-bottom: 20px;
+  font-size: 2em;
+  font-weight: 600;
+}
+
+body.dark .pie-chart-container h2 {
+  color: #f0f0f0; /* Light text for dark mode */
+}
+
+/* Adjust Chart.js legend colors if needed (default usually good) */
+.chartjs-render-monitor {
+  max-height: 300px; /* Limit chart height */
+}
+
+/* --- NEW: Task Buckets Styling --- */
+.task-buckets-container .card-header {
+  background-color: rgba(0, 0, 0, 0.7); /* Darker header for buckets */
+  color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.task-bucket-body {
+  padding: 15px;
+  max-height: 400px; /* Limit height for scrollability */
+  overflow-y: auto; /* Enable scrolling */
+  background-color: rgba(255, 255, 255, 0.1); /* Lighter inside bucket */
+}
+
+.task-bucket-body .list-group-item {
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent list items */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  margin-bottom: 10px; /* Space between items */
+  border-radius: 8px; /* Rounded corners for list items */
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.task-bucket-body .list-group-item:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.task-bucket-body .list-group-item.active {
+  background-color: rgba(0, 123, 255, 0.2); /* Active state color */
+  border-color: #007bff;
+}
+
+/* General button styling for icons inside task actions */
+.btn-sm .svg-inline--fa {
+  margin-right: 5px;
+}
+
+/* Table styling for TaskListTable (if still used directly, though buckets replace its main use) */
+.ts {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.1); /* Glass effect for table */
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+  overflow: hidden; /* Ensures rounded corners */
+}
+
+.ts th, .ts td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  color: #333;
+}
+
+.ts th {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #333;
+  font-weight: bold;
+}
+
+.ts tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.ts tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.ts .table-active td {
+  background-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Small adjustments for responsive design */
+@media (max-width: 768px) {
+  .gamification-badge-section,
+  .pie-chart-container {
+    padding: 15px;
+  }
+  .badge-display h3 {
+    font-size: 1.8em;
+  }
+  .badge-display p {
+    font-size: 1em;
+  }
+  .task-bucket-body {
+    max-height: 300px; /* Adjust for smaller screens */
+  }
+}
+
+/* Ensure Task Item Title is white in dark mode */
+body.dark .task-bucket-body .list-group-item h5 {
+  color: #ffffff; /* Explicitly white for task title */
+}
+
+body.dark .text-muted {
+  color: #ffffff !important; /* Force white for muted text in dark mode */
+}
+
+/* Ensure general text within the badge section is light in dark mode */
+body.dark .gamification-badge-section p,
+body.dark .gamification-badge-section span { /* Adding span just in case */
+  color: rgba(0, 0, 0, 0.98); /* Consistent light color for dark mode */
+}
+
+/* --- Dark Mode for the Footer Box (Overriding Bootstrap's bg-light) --- */
+body.dark .bg-light {
+  background-color: #000000 !important; /* Forces the footer background to BLACK in dark mode */
+  /* Add any other dark mode specific styling for the footer container if needed */
+  /* For example, if you want a border or shadow:
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+  */
+}
+
+/* --- Dark Mode for the Text Inside the Footer --- */
+body.dark .bg-light small {
+  color: #ffffff !important; /* Forces the text to WHITE in dark mode for readability */
+}
