@@ -25,7 +25,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
             @Param("currentTime") LocalDateTime currentTime
     );
 
-    /
+    
     @Modifying 
     @Transactional 
     @Query("UPDATE Task t SET t.status = 'OVERDUE' " + 
