@@ -42,7 +42,7 @@ function TaskCreateForm({ userId, token, onSuccess }) {
       console.log('1. Input Due Date (from form):', dueDate);
       console.log('2. Sent to Backend (ISO string):', new Date(dueDate).toISOString());
 
-      const response = await axios.post(`http://localhost:8080/api/tasks/user/${userId}`, {
+      const response = await axios.post(`https://smarttaskora-backend.onrender.com/api/tasks/user/${userId}`, {
         title, description, dueDate: new Date(dueDate).toISOString(), status: 'PENDING'
       }, { headers: { Authorization: `Bearer ${token}` } });
       console.log('Task created successfully:', response.data);
@@ -309,9 +309,9 @@ function Dashboard() {
     try {
       const headers = { Authorization: `Bearer ${getToken()}` };
       const [allRes, sortedRes, conflictRes] = await Promise.all([
-        axios.get(`http://localhost:8080/api/tasks/user/${userId}`, { headers }),
-        axios.get(`http://localhost:8080/api/tasks/user/${userId}/sorted-by-deadline`, { headers }),
-        axios.get(`http://localhost:8080/api/tasks/user/${userId}/conflicts`, { headers }),
+        axios.get(`https://smarttaskora-backend.onrender.com/api/tasks/user/${userId}`, { headers }),
+        axios.get(`https://smarttaskora-backend.onrender.com/api/tasks/user/${userId}/sorted-by-deadline`, { headers }),
+        axios.get(`https://smarttaskora-backend.onrender.com/api/tasks/user/${userId}/conflicts`, { headers }),
       ]);
       setTasks(allRes.data);
       setSortedTasks(sortedRes.data);
@@ -328,7 +328,7 @@ function Dashboard() {
   // Marks overdue tasks by calling the backend API.
   const markOverdueTasks = useCallback(async () => {
     try {
-      await axios.put(`http://localhost:8080/api/tasks/user/${userId}/mark-overdue`, null, {
+      await axios.put(`https://smarttaskora-backend.onrender.com/api/tasks/user/${userId}/mark-overdue`, null, {
         headers: { Authorization: `Bearer ${getToken()}` }
       });
       console.log('Overdue tasks marked successfully.');
@@ -347,7 +347,7 @@ function Dashboard() {
 
     try {
       await axios.put(
-        `http://localhost:8080/api/tasks/${taskId}/status`,
+        `http://https://smarttaskora-backend.onrender.com/api/tasks/${taskId}/status`,
         newStatus,
         { headers: { Authorization: `Bearer ${currentToken}`, 'Content-Type': 'text/plain' } }
       );
@@ -419,7 +419,7 @@ function Dashboard() {
   const deleteTask = async (taskId) => {
     if (window.confirm('Are you sure you want to delete this task?')) {
       try {
-        await axios.delete(`http://localhost:8080/api/tasks/${taskId}`, {
+        await axios.delete(`https://smarttaskora-backend.onrender.com/api/tasks/${taskId}`, {
           headers: { Authorization: `Bearer ${getToken()}` }
         });
         console.log('Task deleted successfully:', taskId);
@@ -434,7 +434,7 @@ function Dashboard() {
   // Updates an existing task's details via API call.
   const updateTask = async (task) => {
     try {
-      await axios.put(`http://localhost:8080/api/tasks/${task.id}`, task, {
+      await axios.put(`https://smarttaskora-backend.onrender.com/api/tasks/${task.id}`, task, {
         headers: { Authorization: `Bearer ${token}` }
       });
       console.log('Task updated successfully:', task.id);
