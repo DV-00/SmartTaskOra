@@ -23,7 +23,7 @@ function Login() {
     try {
       const { username, password } = formData;
 
-      const response = await axios.post('http://localhost:8080/api/auth/login', {
+      const response = await axios.post('https://smarttaskora-backend.onrender.com/api/auth/login', {
         username,
         password
       });
